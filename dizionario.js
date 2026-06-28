@@ -23,4 +23,53 @@ let dizionario = {
   "che succede": "che succede",
   "tutto ok": "tutto bbuon",
   "va bene": "va bbuon"
+
+  // 🟢 SALUTI
+  "come va": "comm' va",
+  "sto male": "non sto bbuon",
+  "arrivederci": "ce verimm",
+  "a dopo": "a ddoppo",
+  "ci vediamo": "c'amma vedé",
+  "ok": "va bbuon",
+  "va bene": "apposto",
+
+  // 🔵 EMOZIONI
+  "sono felice": "sto cuntento",
+  "sono triste": "sto triste",
+  "sono arrabbiato": "sto arraggiato",
+  "mi piace": "me piace",
+  "non mi piace": "nun me piace",
+  "che bello": "che bbello",
+  "che brutto": "che bbrutto",
+
+  // 🟡 AZIONI
+  "aiutami": "ajùtame",
+  "aspetta": "aspiett",
+  "guarda": "guàrd",
+  "ascolta": "ascuta",
+  "scrivi": "scrive",
+  "leggi": "legge",
+
+  // 🔴 QUOTIDIANO
+  "ragazzo": "uaglione",
+  "ragazza": "uagliona",
+  "madre": "mamma",
+  "padre": "papà",
+  "soldi": "sorde",
+  "casa": "a casa",
+  "scuola": "a scola",
+  "lavoro": "o lavoro",
+  "giorno": "o juorno",
+  "tempo": "o tiempo",
+
+  // ⚫ EXTRA
+  "sempre": "sempre",
+  "mai": "maje",
+  "subito": "subbito",
+  "forse": "forse",
+  "oggi": "ogge",
+  "domani": "dimane",
+  "ieri": "ajere",
+  "devo andare": "aggia jì",
+  "sono qui": "stong ccà"
  };
