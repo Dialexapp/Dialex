@@ -1,89 +1,3 @@
-let dizionario = {
-  "ciao": "uè",
-  "come stai": "come staje",
-  "sto bene": "stong' bbuon",
-  "tutto bene": "tutt'apposto",
-  "che fai": "che staie facenno",
-  "dove vai": "addò vaie",
-  "non lo so": "nun 'o ssaccio",
-  "grazie": "grazie",
-  "prego": "prego",
-  "scusa": "scusame",
-  "buongiorno": "buongiorno",
-  "buonasera": "buonasera",
-  "quanto costa": "quanto costa",
-  "ho fame": "tengo fame",
-  "ho sete": "tengo sete",
-  "sono stanco": "sto stanco",
-  "vieni qui": "vieni ccà",
-  "andiamo": "jamm",
-  "non capisco": "nun capisco",
-  "è bello": "è bbello",
-  "è brutto": "è bbrutto",
-  "che succede": "che succede",
-  "tutto ok": "tutto bbuon",
-  "va bene": "va bbuon",
-
-  // 🟢 SALUTI
-  "come va": "comm' va",
-  "sto male": "non sto bbuon",
-  "arrivederci": "ce verimm",
-  "a dopo": "a ddoppo",
-  "ci vediamo": "c'amma vedé",
-  "ok": "va bbuon",
-  "va bene": "apposto",
-
-  // 🔵 EMOZIONI
-  "sono felice": "sto cuntento",
-  "sono triste": "sto triste",
-  "sono arrabbiato": "sto arraggiato",
-  "mi piace": "me piace",
-  "non mi piace": "nun me piace",
-  "che bello": "che bbello",
-  "che brutto": "che bbrutto",
-
-  // 🟡 AZIONI
-  "aiutami": "ajùtame",
-  "aspetta": "aspiett",
-  "guarda": "guàrd",
-  "ascolta": "ascuta",
-  "scrivi": "scrive",
-  "leggi": "legge",
-
-  // 🔴 QUOTIDIANO
-  "ragazzo": "uaglione",
-  "ragazza": "uagliona",
-  "madre": "mamma",
-  "padre": "papà",
-  "soldi": "sorde",
-  "casa": "a casa",
-  "scuola": "a scola",
-  "lavoro": "o lavoro",
-  "giorno": "o juorno",
-  "tempo": "o tiempo",
-
-  // ⚫ EXTRA
-  "sempre": "sempre",
-  "mai": "maje",
-  "subito": "subbito",
-  "forse": "forse",
-  "oggi": "ogge",
-  "domani": "dimane",
-  "ieri": "ajere",
-  "devo andare": "aggia jì",
-  "sono qui": "stong ccà"
-}
-
-try {
-  let salvato = localStorage.getItem("dizionario");
-
-  if (salvato) {
-    let custom = JSON.parse(salvato);
-    dizionario = { ...dizionario, ...custom };
-  }
-} catch (e) {
-  console.log("Errore dizionario salvato, reset ignorato");
-}
 function normalizzaTesto(testo) {
   return testo
     .toLowerCase()
@@ -92,7 +6,7 @@ function normalizzaTesto(testo) {
     .replace(/\s+/g, " ");
 }
 
-// 🔥 trova parola simile (AI base migliorata)
+// 🔥 AI SIMILE
 function similarita(a, b) {
   let max = Math.max(a.length, b.length);
   let same = 0;
@@ -124,31 +38,33 @@ function traduci() {
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
-  let testo = normalizzaTesto(input.value);
+  if (!input || !output) return;
 
   if (!dizionario) {
     output.innerText = "Dizionario non caricato";
     return;
   }
 
-  // 1️⃣ frase completa
+  let testo = normalizzaTesto(input.value);
+
   if (dizionario[testo]) {
     output.innerText = dizionario[testo];
     return;
   }
 
-  // 2️⃣ AI parola per parola
   let parole = testo.split(" ");
 
   let risultato = parole.map(p => {
     return dizionario[p] || trovaSimile(p) || p;
   });
 
- 
-output.innerText = risultato.join(" ");
-  function impara() {
-  let input = document.getElementById("input").value;
-  let output = document.getElementById("output").value;
+  output.innerText = risultato.join(" ");
+}
+
+// 🧠 AUTO-LEARNING (SEPARATO E CORRETTO)
+function impara() {
+  const input = document.getElementById("input").value;
+  const output = document.getElementById("output").innerText;
 
   if (!input || !output) return;
 
@@ -158,6 +74,23 @@ output.innerText = risultato.join(" ");
 
   localStorage.setItem("dizionario", JSON.stringify(dizionario));
 
-  alert("Dialex ha imparato questa traduzione 😎");
-  }
+  alert("Dialex ha imparato 😎");
 }
+
+function reset() {
+  document.getElementById("input").value = "";
+  document.getElementById("output").innerText = "";
+}
+
+function scambiaLingue() {
+  const input = document.getElementById("input");
+  const output = document.getElementById("output");
+
+  const temp = input.value;
+  input.value = output.innerText;
+  output.innerText = temp;
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+    }
