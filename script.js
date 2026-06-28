@@ -1,22 +1,39 @@
 // 🌍 Dialex - SCRIPT FINALE
 
+function normalizzaTesto(testo) {
+  return testo
+    .toLowerCase()
+    .trim()
+    .replace(/[.,!?;:()"']/g, "")
+    .replace(/\s+/g, " ");
+}
+
 function traduci() {
-  let input = document.getElementById("input");
-  let output = document.getElementById("output");
+  const input = document.getElementById("input");
+  const output = document.getElementById("output");
 
   if (!input || !output) return;
 
-  let testo = input.value.toLowerCase().trim();
-
-  // usa il dizionario globale
   if (typeof dizionario === "undefined") {
     output.innerText = "Dizionario non caricato";
     return;
   }
 
-  let risultato = dizionario[testo];
+  let testo = normalizzaTesto(input.value);
 
-  output.innerText = risultato ? risultato : "Non trovato";
+  // Traduzione diretta
+  if (dizionario[testo]) {
+    output.innerText = dizionario[testo];
+    return;
+  }
+
+  // Traduzione parola per parola
+  let parole = testo.split(" ");
+  let tradotte = parole.map(parola => {
+    return dizionario[parola] || parola;
+  });
+
+  output.innerText = tradotte.join(" ");
 }
 
 function reset() {
@@ -25,27 +42,26 @@ function reset() {
 }
 
 function scambiaLingue() {
-  let input = document.getElementById("input");
-  let output = document.getElementById("output");
+  const input = document.getElementById("input");
+  const output = document.getElementById("output");
 
-  let temp = input.value;
+  const temp = input.value;
   input.value = output.innerText;
   output.innerText = temp;
 }
 
-// 🌙 Dark mode
 function toggleDark() {
   document.body.classList.toggle("dark");
 }
 
-// 🌊 Ripple effect
 function addRipple(e) {
   const btn = e.currentTarget;
 
-  let ripple = document.createElement("span");
-  ripple.classList.add("ripple");
+  const ripple = document.createElement("span");
+  ripple.className = "ripple";
 
-  let rect = btn.getBoundingClientRect();
+  const rect = btn.getBoundingClientRect();
+
   ripple.style.left = (e.clientX - rect.left) + "px";
   ripple.style.top = (e.clientY - rect.top) + "px";
 
