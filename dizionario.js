@@ -1,5 +1,5 @@
 let dizionario = {
- "ciao": "uè",
+ "ciao": "TEST123",
   "come stai": "come staje",
   "sto bene": "stong' bbuon",
   "tutto bene": "tutt'apposto",
