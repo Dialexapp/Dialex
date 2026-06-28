@@ -1,4 +1,3 @@
-console.log("DIZIONARIO CARICATO");
 let dizionario = {
  "ciao": "uè",
   "come stai": "come staje",
