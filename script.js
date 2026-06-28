@@ -3,11 +3,79 @@ let modalita = "it-nap";
 
 // demo dizionario base (puoi ampliarlo dopo)
 let dizionario = {
-    "ciao": "uè",
-    "come": "cumme",
-    "stai": "staie",
-    "bello": "bell",
-    "ragazzo": "guaglione"
+     "ciao": "uè",
+  "come stai": "come staje",
+  "sto bene": "stong' bbuon",
+  "tutto bene": "tutt'apposto",
+  "che fai": "che staie facenno",
+  "dove vai": "addò vaie",
+  "non lo so": "nun 'o ssaccio",
+  "grazie": "grazie",
+  "prego": "prego",
+  "scusa": "scusame",
+  "buongiorno": "buongiorno",
+  "buonasera": "buonasera",
+  "quanto costa": "quanto costa",
+  "ho fame": "tengo fame",
+  "ho sete": "tengo sete",
+  "sono stanco": "sto stanco",
+  "vieni qui": "vieni ccà",
+  "andiamo": "jamm",
+  "non capisco": "nun capisco",
+  "è bello": "è bbello",
+  "è brutto": "è bbrutto",
+  "che succede": "che succede",
+  "tutto ok": "tutto bbuon",
+  "va bene": "va bbuon"
+
+  // 🟢 SALUTI
+  "come va": "comm' va",
+  "sto male": "non sto bbuon",
+  "arrivederci": "ce verimm",
+  "a dopo": "a ddoppo",
+  "ci vediamo": "c'amma vedé",
+  "ok": "va bbuon",
+  "va bene": "apposto",
+
+  // 🔵 EMOZIONI
+  "sono felice": "sto cuntento",
+  "sono triste": "sto triste",
+  "sono arrabbiato": "sto arraggiato",
+  "mi piace": "me piace",
+  "non mi piace": "nun me piace",
+  "che bello": "che bbello",
+  "che brutto": "che bbrutto",
+
+  // 🟡 AZIONI
+  "aiutami": "ajùtame",
+  "aspetta": "aspiett",
+  "guarda": "guàrd",
+  "ascolta": "ascuta",
+  "scrivi": "scrive",
+  "leggi": "legge",
+
+  // 🔴 QUOTIDIANO
+  "ragazzo": "uaglione",
+  "ragazza": "uagliona",
+  "madre": "mamma",
+  "padre": "papà",
+  "soldi": "sorde",
+  "casa": "a casa",
+  "scuola": "a scola",
+  "lavoro": "o lavoro",
+  "giorno": "o juorno",
+  "tempo": "o tiempo",
+
+  // ⚫ EXTRA
+  "sempre": "sempre",
+  "mai": "maje",
+  "subito": "subbito",
+  "forse": "forse",
+  "oggi": "ogge",
+  "domani": "dimane",
+  "ieri": "ajere",
+  "devo andare": "aggia jì",
+  "sono qui": "stong ccà"
 };
 
 // =====================
