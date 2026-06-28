@@ -23,7 +23,7 @@ let dizionario = {
   "è brutto": "è bbrutto",
   "che succede": "che succede",
   "tutto ok": "tutto bbuon",
-  "va bene": "va bbuon"
+  "va bene": "va bbuon",
 
   // 🟢 SALUTI
   "come va": "comm' va",
