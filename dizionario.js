@@ -71,5 +71,5 @@ let dizionario = {
   "domani": "dimane",
   "ieri": "ajere",
   "devo andare": "aggia jì",
-  "sono qui": "stong ccà",
+  "sono qui": "stong ccà"
  };
