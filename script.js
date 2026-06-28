@@ -1,4 +1,3 @@
-// 🌍 Dialex - SCRIPT FINALE
 
 function normalizzaTesto(testo) {
   return testo
@@ -21,19 +20,20 @@ function traduci() {
 
   let testo = normalizzaTesto(input.value);
 
-  // Traduzione diretta
+  // 1️⃣ Traduzione frase completa
   if (dizionario[testo]) {
     output.innerText = dizionario[testo];
     return;
   }
 
-  // Traduzione parola per parola
+  // 2️⃣ Traduzione parola per parola
   let parole = testo.split(" ");
-  let tradotte = parole.map(parola => {
-    return dizionario[parola] || parola;
+
+  let risultato = parole.map(p => {
+    return dizionario[p] || p;
   });
 
-  output.innerText = tradotte.join(" ");
+  output.innerText = risultato.join(" ");
 }
 
 function reset() {
@@ -50,10 +50,12 @@ function scambiaLingue() {
   output.innerText = temp;
 }
 
+// 🌙 Dark mode
 function toggleDark() {
   document.body.classList.toggle("dark");
 }
 
+// 🌊 Ripple effect (versione stabile)
 function addRipple(e) {
   const btn = e.currentTarget;
 
@@ -70,4 +72,4 @@ function addRipple(e) {
   setTimeout(() => {
     ripple.remove();
   }, 600);
-}
+                       }
