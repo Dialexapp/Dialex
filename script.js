@@ -40,7 +40,7 @@ function traduci() {
 
   if (!input || !output) return;
 
-  if (!dizionario) {
+  if (typeof dizionario === "undefined") {
     output.innerText = "Dizionario non caricato";
     return;
   }
