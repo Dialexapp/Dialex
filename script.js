@@ -7,69 +7,66 @@ function normalizzaTesto(testo) {
     .replace(/\s+/g, " ");
 }
 
+function trovaSimile(parola) {
+  if (!dizionario) return null;
+
+  let miglioreMatch = null;
+  let migliorScore = 0;
+
+  for (let key in dizionario) {
+    let score = similarita(parola, key);
+
+    if (score > migliorScore) {
+      migliorScore = score;
+      miglioreMatch = key;
+    }
+  }
+
+  // soglia minima per evitare errori
+  if (migliorScore >= 0.6) {
+    return dizionario[miglioreMatch];
+  }
+
+  return null;
+}
+
+// 🔥 algoritmo di somiglianza (AI base)
+function similarita(a, b) {
+  let maxLen = Math.max(a.length, b.length);
+  let same = 0;
+
+  for (let i = 0; i < Math.min(a.length, b.length); i++) {
+    if (a[i] === b[i]) same++;
+  }
+
+  return same / maxLen;
+}
+
 function traduci() {
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
   if (!input || !output) return;
 
-  if (typeof dizionario === "undefined") {
+  if (!dizionario) {
     output.innerText = "Dizionario non caricato";
     return;
   }
 
   let testo = normalizzaTesto(input.value);
 
-  // 1️⃣ Traduzione frase completa
+  // 1️⃣ match perfetto
   if (dizionario[testo]) {
     output.innerText = dizionario[testo];
     return;
   }
 
-  // 2️⃣ Traduzione parola per parola
+  // 2️⃣ match AI (simile)
   let parole = testo.split(" ");
 
   let risultato = parole.map(p => {
-    return dizionario[p] || p;
+    return dizionario[p] || trovaSimile(p) || p;
   });
 
   output.innerText = risultato.join(" ");
 }
-
-function reset() {
-  document.getElementById("input").value = "";
-  document.getElementById("output").innerText = "";
-}
-
-function scambiaLingue() {
-  const input = document.getElementById("input");
-  const output = document.getElementById("output");
-
-  const temp = input.value;
-  input.value = output.innerText;
-  output.innerText = temp;
-}
-
-// 🌙 Dark mode
-function toggleDark() {
-  document.body.classList.toggle("dark");
-}
-
-// 🌊 Ripple effect (versione stabile)
-function addRipple(e) {
-  const btn = e.currentTarget;
-
-  const ripple = document.createElement("span");
-  ripple.className = "ripple";
-
-  const rect = btn.getBoundingClientRect();
-
-  ripple.style.left = (e.clientX - rect.left) + "px";
-  ripple.style.top = (e.clientY - rect.top) + "px";
-
-  btn.appendChild(ripple);
-
-  setTimeout(() => {
-    ripple.remove();
-  }, 600);
-                       }
