@@ -1,5 +1,5 @@
 // 🌍 Dialex - SCRIPT FINALE
-
+console.log("DIZIONARIO CARICATO");
 function traduci() {
   let input = document.getElementById("input");
   let output = document.getElementById("output");
