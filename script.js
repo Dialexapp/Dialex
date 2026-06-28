@@ -1,3 +1,8 @@
+let salvato = localStorage.getItem("dizionario");
+
+if (salvato) {
+  dizionario = JSON.parse(salvato);
+}
 function normalizzaTesto(testo) {
   return testo
     .toLowerCase()
@@ -58,5 +63,20 @@ function traduci() {
     return dizionario[p] || trovaSimile(p) || p;
   });
 
-  output.innerText = risultato.join(" ");
+ 
+output.innerText = risultato.join(" ");
+  function impara() {
+  let input = document.getElementById("input").value;
+  let output = document.getElementById("output").value;
+
+  if (!input || !output) return;
+
+  let key = normalizzaTesto(input);
+
+  dizionario[key] = output;
+
+  localStorage.setItem("dizionario", JSON.stringify(dizionario));
+
+  alert("Dialex ha imparato questa traduzione 😎");
+  }
 }
