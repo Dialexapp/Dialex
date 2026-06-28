@@ -1,4 +1,3 @@
-console.log(dizionario);
 let modalita = "it-nap";
 
 // demo dizionario base (puoi ampliarlo dopo)
