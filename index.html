@@ -5,146 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dialex</title>
 
-<style>
+<link rel="manifest" href="manifest.json">
 
+<style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    transition: 0.3s;
+  margin: 0;
+  font-family: Arial;
+  background: #f4f6f8;
+  transition: 0.3s;
 }
 
 .app {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
-}
-
-h1 {
-    text-align: center;
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
 }
 
 .box {
-    background: white;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 12px;
 }
 
 textarea {
-    width: 100%;
-    height: 120px;
-    font-size: 16px;
-    border: none;
-    outline: none;
-    resize: none;
-}
-
-.buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+  width: 100%;
+  height: 120px;
+  border: none;
+  outline: none;
+  font-size: 16px;
 }
 
 button {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: 0.2s;
-}
-
-button:hover {
-    transform: scale(1.04);
-}
-
-button:active {
-    transform: scale(0.96);
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  margin: 5px;
+  cursor: pointer;
 }
 
 .primary { background: #2563eb; color: white; }
 .swap { background: #10b981; color: white; }
 .danger { background: #ef4444; color: white; }
 
-/* 🌊 RIPPLE */
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: rippleAnim 600ms ease-out;
-    background: rgba(255,255,255,0.7);
-    pointer-events: none;
-}
-
-@keyframes rippleAnim {
-    to {
-        transform: scale(6);
-        opacity: 0;
-    }
-}
-
-/* 🌙 DARK MODE */
 body.dark {
-    background: #0f172a;
-    color: white;
+  background: #0f172a;
+  color: white;
 }
 
 body.dark .box {
-    background: #1e293b;
-    color: white;
+  background: #1e293b;
+  color: white;
 }
-
-body.dark textarea {
-    background: #1e293b;
-    color: white;
-}
-
 </style>
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme color" content="#0b0f1a">
-
-
 </head>
-
-
 
 <body>
 
 <div class="app">
 
-    <div style="text-align:right;">
-        <button class="swap" onclick="toggleDark(); addRipple(event)">🌙</button>
-    </div>
+  <h1>Dialex 🌍</h1>
 
-    <h1>Dialex 🌍</h1>
+  <div class="box">
+    <textarea id="input"></textarea>
+  </div>
 
-    <div class="box">
-        <textarea id="input" placeholder="Inserisci il testo..."></textarea>
-    </div>
+  <div>
+    <button class="primary" onclick="traduci()">Traduci</button>
+    <button class="swap" onclick="scambiaLingue()">Scambia</button>
+    <button class="danger" onclick="reset()">Reset</button>
+    <button class="swap" onclick="toggleDark()">🌙</button>
+  </div>
 
-    <div class="buttons">
-
-        <button class="primary" onclick="addRipple(event); traduci()">Traduci</button>
-
-        <button class="swap" onclick="addRipple(event); scambiaLingue()">Scambia</button>
-
-        <button class="danger" onclick="addRipple(event); reset()">Reset</button>
-
-    </div>
-
-    <div class="box">
-        <div id="output"></div>
-    </div>
+  <div class="box">
+    <div id="output"></div>
+  </div>
 
 </div>
-    
+
 <script src="dizionario.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
