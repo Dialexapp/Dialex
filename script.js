@@ -7,7 +7,7 @@ function normalizzaTesto(testo) {
     .replace(/\s+/g, " ");
 }
 
-// 🧠 similarità base (anti-errori)
+// 🧠 similarità base
 function similarita(a, b) {
   let max = Math.max(a.length, b.length);
   let same = 0;
@@ -19,14 +19,13 @@ function similarita(a, b) {
   return same / max;
 }
 
-// 🔍 trova parola simile nel dizionario
+// 🔍 trova parola simile
 function trovaSimile(parola) {
   let best = null;
   let scoreMax = 0;
 
   for (let key in dizionario) {
     let score = similarita(parola, key);
-
     if (score > scoreMax) {
       scoreMax = score;
       best = key;
@@ -37,7 +36,7 @@ function trovaSimile(parola) {
   return null;
 }
 
-// 🚀 TRADUZIONE PRINCIPALE (V2)
+// 🚀 V3 AI: traduzione frase intelligente
 function traduci() {
   const input = document.getElementById("input");
   const output = document.getElementById("output");
@@ -51,29 +50,47 @@ function traduci() {
 
   let testo = normalizzaTesto(input.value);
 
-  // 1️⃣ frase completa
+  // 1️⃣ match perfetto frase intera
   if (dizionario[testo]) {
     output.innerText = dizionario[testo];
     return;
   }
 
-  // 2️⃣ parola per parola + AI fallback
   let parole = testo.split(" ");
 
-  let risultato = parole.map(p => {
-    return dizionario[p] || trovaSimile(p) || p;
-  });
+  let risultato = [];
+
+  for (let i = 0; i < parole.length; i++) {
+
+    let parola = parole[i];
+
+    // 2️⃣ prova dizionario diretto
+    if (dizionario[parola]) {
+      risultato.push(dizionario[parola]);
+      continue;
+    }
+
+    // 3️⃣ prova AI simile
+    let simile = trovaSimile(parola);
+    if (simile) {
+      risultato.push(simile);
+      continue;
+    }
+
+    // 4️⃣ fallback
+    risultato.push(parola);
+  }
 
   output.innerText = risultato.join(" ");
 }
 
-// 🧹 RESET
+// 🧹 reset
 function reset() {
   document.getElementById("input").value = "";
   document.getElementById("output").innerText = "";
 }
 
-// 🔁 SCAMBIO
+// 🔁 scambio
 function scambiaLingue() {
   const input = document.getElementById("input");
   const output = document.getElementById("output");
@@ -83,12 +100,12 @@ function scambiaLingue() {
   output.innerText = temp;
 }
 
-// 🌙 DARK MODE
+// 🌙 dark mode
 function toggleDark() {
   document.body.classList.toggle("dark");
 }
 
-// 🧠 AUTO-LEARNING STABILE
+// 🧠 auto-learning (stabile)
 function impara() {
   const input = document.getElementById("input").value;
   const output = document.getElementById("output").innerText;
@@ -102,4 +119,4 @@ function impara() {
   localStorage.setItem("dizionario", JSON.stringify(dizionario));
 
   alert("Dialex ha imparato 😎");
-      }
+}
