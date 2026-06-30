@@ -27,17 +27,17 @@
   ],
 
   "screenshots": [
-    {
-      "src": "screenshot1.png",
-      "sizes": "1240 x 2772",
-      "type": "image/png",
-      "form_factor": "wide"
-    },
-    {
-      "src": "screenshot2.png",
-      "sizes": "1240 x 2772",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
+  {
+    "src": "screenshot1.png",
+    "sizes": "1240x2772",
+    "type": "image/png",
+    "form_factor": "narrow"
+  },
+  {
+    "src": "screenshot2.png",
+    "sizes": "1240x2772",
+    "type": "image/png",
+    "form_factor": "narrow"
+  }
   ]
 }
