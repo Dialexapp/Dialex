@@ -119,8 +119,11 @@ function impara() {
   localStorage.setItem("dizionario", JSON.stringify(dizionario));
 
   alert("Dialex ha imparato 😎");
-  
+
   if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("sw.js");
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js");
+  });
   }
+  
 }
