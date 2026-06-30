@@ -3,6 +3,7 @@
   "name": "Dialex",
   "short_name": "Dialex",
   "description": "Dialex è un traduttore intelligente italiano - napoletano veloce e semplice da usare.",
+  "categories": ["utilities", "productivity", "education"],
   "start_url": ".",
   "scope": ".",
   "display": "standalone",
