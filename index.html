@@ -3,73 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Dialex</title>
 
 <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #f4f6f8;
-  transition: 0.3s;
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f8;
+  transition:.3s;
 }
 
-.app {
-  max-width: 700px;
-  margin: 40px auto;
-  padding: 20px;
+.app{
+  max-width:700px;
+  margin:40px auto;
+  padding:20px;
 }
 
-.box {
-  background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 12px;
+h1{
+  text-align:center;
 }
 
-textarea {
-  width: 100%;
-  height: 120px;
-  border: none;
-  outline: none;
-  font-size: 16px;
+.box{
+  background:white;
+  padding:15px;
+  margin:10px 0;
+  border-radius:12px;
+  box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
 
-button {
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  margin: 5px;
-  cursor: pointer;
+textarea{
+  width:100%;
+  height:120px;
+  border:none;
+  outline:none;
+  resize:none;
+  font-size:16px;
+  background:transparent;
 }
 
-.primary { background: #2563eb; color: white; }
-.swap { background: #10b981; color: white; }
-.danger { background: #ef4444; color: white; }
-
-body.dark {
-  background: #0f172a;
-  color: white;
+.buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
 }
 
-body.dark .box {
-  background: #1e293b;
-  color: white;
+button{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:16px;
+}
+
+.primary{
+  background:#2563eb;
+  color:white;
+}
+
+.swap{
+  background:#10b981;
+  color:white;
+}
+
+.danger{
+  background:#ef4444;
+  color:white;
+}
+
+body.dark{
+  background:#0f172a;
+  color:white;
+}
+
+body.dark .box{
+  background:#1e293b;
+}
+
+body.dark textarea{
+  background:#1e293b;
+  color:white;
+}
+
+body.dark #output{
+  color:white;
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="app">
 
-  <h1>Dialex 🌍</h1>
+<div style="text-align:right;">
+<button class="swap" onclick="toggleDark()">🌙</button>
+</div>
 
-  <div class="box">
-    <textarea id="input"></textarea>
-  </div>
+<h1>Dialex 🌍</h1>
 
-  <div>
-    <button class="primary" onclick="traduci()">Traduci</button>
-    <
+<div class="box">
+<textarea id="input" placeholder="Inserisci il testo..."></textarea>
+</div>
+
+<div class="buttons">
+<button class="primary" onclick="traduci()">Traduci</button>
+<button class="swap" onclick="scambiaLingue()">Scambia</button>
+<button class="danger" onclick="reset()">Reset</button>
+</div>
+
+<div class="box">
+<div id="output"></div>
+</div>
+
+</div>
+
+<script src="dizionario.js"></script>
+<script src="script.js"></script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./sw.js");
+  });
+}
+</script>
+
+</body>
+</html>
