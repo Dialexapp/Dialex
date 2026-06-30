@@ -1,14 +1,16 @@
-const CACHE = "dialex-v1";
+const CACHE_NAME = "dialex-v1";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE).then((cache) => {
+    caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll([
         "./",
         "./index.html",
-        "./manifest.json",
         "./script.js",
-        "./dizionario.js"
+        "./dizionario.js",
+        "./manifest.json",
+        "./icon-192.png",
+        "./icon-512.png"
       ]);
     })
   );
@@ -16,8 +18,8 @@ self.addEventListener("install", (event) => {
 
 self.addEventListener("fetch", (event) => {
   event.respondWith(
-    caches.match(event.request).then((res) => {
-      return res || fetch(event.request);
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });
