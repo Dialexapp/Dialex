@@ -11,6 +11,14 @@
   "orientation": "portrait",
   "lang": "it-IT",
 
+  "shortcuts": [
+  {
+    "name": "Traduci",
+    "url": "./",
+    "description": "Apri subito la traduzione"
+  }
+  ]
+
   "icons": [
     {
       "src": "icon-192.png",
