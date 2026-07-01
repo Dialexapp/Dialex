@@ -135,5 +135,28 @@ window.addEventListener("beforeinstallprompt", (e) => {
   // qui puoi mostrare un tuo bottone install
   console.log("App installabile pronta");
 });
+
+  const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  installBtn.style.display = "block";
+});
+
+installBtn.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+
+  deferredPrompt.prompt();
+
+  const choice = await deferredPrompt.userChoice;
+
+  if (choice.outcome === "accepted") {
+    console.log("App installata");
+  }
+
+  deferredPrompt = null;
+});
   
 }
