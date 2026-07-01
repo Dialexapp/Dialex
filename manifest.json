@@ -1,29 +1,33 @@
 {
   "name": "Dialex",
   "short_name": "Dialex",
+  "description": "Traduttore italiano - napoletano veloce e offline",
+
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
-  "description": "Traduttore italiano - napoletano veloce e offline",
-
-  "id": "dialex-app",
-
-  "orientation": "portrait-primary",
-
-  "lang": "it",
-  "dir": "ltr",
-
-  "categories": ["utilities", "productivity"],
-
-  "prefer_related_applications": false,
-  "related_applications": [],
-
   "display_override": [
     "window-controls-overlay",
     "standalone"
   ],
+
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+
+  "id": "dialex-app",
+
+  "lang": "it",
+  "dir": "ltr",
+  "orientation": "portrait-primary",
+
+  "categories": [
+    "utilities",
+    "productivity",
+    "education"
+  ],
+
+  "prefer_related_applications": false,
+  "related_applications": [],
 
   "icons": [
     {
@@ -59,16 +63,16 @@
     {
       "name": "Traduci",
       "short_name": "Traduci",
+      "description": "Apri traduttore",
       "url": "./index.html"
     }
-  ]
+  ],
 
-"share_target": {
-  "action": "./index.html",
-  "method": "GET",
-  "params": {
-    "text": "text"
+  "share_target": {
+    "action": "./index.html",
+    "method": "GET",
+    "params": {
+      "text": "text"
+    }
   }
-}
-  
 }
