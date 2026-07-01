@@ -2,16 +2,6 @@
 <html lang="it">
 <head>
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="mobile-web-app-capable" content="yes">
-
-  <meta name="description" content="Dialex è un traduttore italiano-napoletano veloce e offline">
-<meta name="theme-color" content="#0f172a">
-<meta name="application-name" content="Dialex">
-  
-  <meta name="description" content="Dialex è un traduttore italiano - napoletano veloce e offline">
-<meta name="application-name" content="Dialex">
-  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -22,7 +12,7 @@
 
 <style>
 
-  .popup {
+.popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -51,7 +41,7 @@
 
 .popup-buttons {
   display: flex;
-  justify-content: space-between;
+  gap: 10px;
   margin-top: 15px;
 }
 
@@ -62,7 +52,6 @@
   padding: 10px;
   border-radius: 10px;
   flex: 1;
-  margin-right: 5px;
 }
 
 .close {
@@ -81,12 +70,13 @@
   from { transform: scale(0.8); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
-  
+
+/* APP STYLE */
+
 body{
   margin:0;
-  font-family:Arial,sans-serif;
+  font-family:Arial;
   background:#f4f6f8;
-  transition:.3s;
 }
 
 .app{
@@ -95,16 +85,11 @@ body{
   padding:20px;
 }
 
-h1{
-  text-align:center;
-}
-
 .box{
   background:white;
   padding:15px;
   margin:10px 0;
   border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,.1);
 }
 
 textarea{
@@ -112,117 +97,63 @@ textarea{
   height:120px;
   border:none;
   outline:none;
-  resize:none;
   font-size:16px;
-  background:transparent;
-}
-
-.buttons{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
 }
 
 button{
-  flex:1;
   padding:12px;
   border:none;
   border-radius:10px;
   cursor:pointer;
-  font-size:16px;
 }
 
-.primary{
-  background:#2563eb;
-  color:white;
-}
+.primary{ background:#2563eb; color:white; }
+.swap{ background:#10b981; color:white; }
+.danger{ background:#ef4444; color:white; }
 
-.swap{
-  background:#10b981;
-  color:white;
-}
-
-.danger{
-  background:#ef4444;
-  color:white;
-}
-
-body.dark{
-  background:#0f172a;
-  color:white;
-}
-
-body.dark .box{
-  background:#1e293b;
-}
-
-body.dark textarea{
-  background:#1e293b;
-  color:white;
-}
-
-body.dark #output{
-  color:white;
-}
 </style>
-
 </head>
 
+<body>
+
+<!-- POPUP INSTALL -->
 <div id="installPopup" class="popup hidden">
   <div class="popup-card">
-    
+
     <div class="popup-icon">📱</div>
 
     <h2>Installa Dialex</h2>
-    <p>Usa l’app offline, veloce e sempre disponibile come una vera app.</p>
+    <p>Usa Dialex come app veloce e offline</p>
 
     <div class="popup-buttons">
-      <button id="installBtn" class="install">Installa</button>
+      <button id="installBtnPopup" class="install">Installa</button>
       <button id="closePopup" class="close">Ora no</button>
     </div>
 
   </div>
 </div>
-  
-<body>
 
 <div class="app">
 
-<div style="text-align:right;">
-<button class="swap" onclick="toggleDark()">🌙</button>
-</div>
+  <h1>Dialex 🌍</h1>
 
-<h1>Dialex 🌍</h1>
+  <div class="box">
+    <textarea id="input" placeholder="Scrivi qui..."></textarea>
+  </div>
 
-<div class="box">
-<textarea id="input" placeholder="Inserisci il testo..."></textarea>
-</div>
+  <button class="primary" onclick="traduci()">Traduci</button>
+  <button class="swap" onclick="scambiaLingue()">Scambia</button>
+  <button class="danger" onclick="reset()">Reset</button>
 
-<div class="buttons">
-<button class="primary" onclick="traduci()">Traduci</button>
-<button class="swap" onclick="scambiaLingue()">Scambia</button>
-<button class="danger" onclick="reset()">Reset</button>
-  <button id="installBtn" class="primary" style="display:none;">
-  Installa App
-  </button>
-</div>
-
-<div class="box">
-<div id="output"></div>
-</div>
+  <div class="box">
+    <div id="output"></div>
+  </div>
 
 </div>
 
 <script src="dizionario.js"></script>
 <script src="script.js"></script>
 
-<script>
-if ("serviceWorker" in navigator) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker.register("./sw.js");
-  });
-}
-</script>
-
 </body>
 </html>
+``
