@@ -52,4 +52,17 @@
       "form_factor": "wide"
     }
   ]
+  "lang": "it",
+"dir": "ltr",
+"display_override": [
+  "window-controls-overlay",
+  "standalone"
+],
+"shortcuts": [
+  {
+    "name": "Traduci",
+    "short_name": "Traduci",
+    "url": "./index.html"
+  }
+],
 }
