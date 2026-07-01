@@ -1,26 +1,16 @@
 {
-  "id": "/",
   "name": "Dialex",
   "short_name": "Dialex",
-  "description": "Dialex è un traduttore intelligente italiano - napoletano veloce e semplice da usare.",
-  "categories": ["utilities", "productivity", "education"],
-  "prefer_related_applications": false,
-"related_applications": []
-  "start_url": ".",
-  "scope": ".",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
-  "orientation": "portrait",
-  "lang": "it-IT",
+  "description": "Traduttore italiano - napoletano veloce e offline",
 
-  "shortcuts": [
-  {
-    "name": "Traduci",
-    "url": "./",
-    "description": "Apri subito la traduzione"
-  }
-  ]
+  "categories": ["utilities", "productivity", "education"],
+
+  "prefer_related_applications": false,
+  "related_applications": [],
 
   "icons": [
     {
@@ -38,23 +28,23 @@
   ],
 
   "screenshots": [
-  {
-    "src": "screenshot1.png",
-    "sizes": "1240x2772",
-    "type": "image/png",
-    "form_factor": "narrow"
-  },
-  {
-    "src": "screenshot2.png",
-    "sizes": "1240x2772",
-    "type": "image/png",
-    "form_factor": "narrow"
-  }
     {
-  "src": "screenshot-wide.png",
-  "sizes": "2772x1240",
-  "type": "image/png",
-  "form_factor": "wide"
+      "src": "screenshot1.png",
+      "sizes": "1240x2772",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshot2.png",
+      "sizes": "1240x2772",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "2772x1240",
+      "type": "image/png",
+      "form_factor": "wide"
     }
   ]
 }
