@@ -126,4 +126,14 @@ function impara() {
   });
   }
   
+  let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  // qui puoi mostrare un tuo bottone install
+  console.log("App installabile pronta");
+});
+  
 }
