@@ -158,5 +158,35 @@ installBtn.addEventListener("click", async () => {
 
   deferredPrompt = null;
 });
+
+let deferredPrompt;
+
+const popup = document.getElementById("installPopup");
+const installBtn = document.getElementById("installBtn");
+const closeBtn = document.getElementById("closePopup");
+
+// quando app è installabile
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  popup.classList.remove("hidden");
+});
+
+// click installa
+installBtn.addEventListener("click", async () => {
+  popup.classList.add("hidden");
+
+  deferredPrompt.prompt();
+
+  const choice = await deferredPrompt.userChoice;
+
+  deferredPrompt = null;
+});
+
+// chiudi popup
+closeBtn.addEventListener("click", () => {
+  popup.classList.add("hidden");
+});
   
 }
