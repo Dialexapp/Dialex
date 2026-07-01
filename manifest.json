@@ -12,7 +12,11 @@
 
   "orientation": "portrait-primary",
 
-  "categories": ["utilities", "productivity", "education"],
+  "categories": [
+    "utilities",
+    "productivity",
+    "education"
+  ],
 
   "prefer_related_applications": false,
   "related_applications": [],
@@ -52,17 +56,20 @@
       "form_factor": "wide"
     }
   ],
+
   "lang": "it",
-"dir": "ltr",
-"display_override": [
-  "window-controls-overlay",
-  "standalone"
-],
-"shortcuts": [
-  {
-    "name": "Traduci",
-    "short_name": "Traduci",
-    "url": "./index.html"
-  }
-]
+  "dir": "ltr",
+
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
+
+  "shortcuts": [
+    {
+      "name": "Traduci",
+      "short_name": "Traduci",
+      "url": "./index.html"
+    }
+  ]
 }
