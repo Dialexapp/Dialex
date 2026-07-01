@@ -62,4 +62,13 @@
       "url": "./index.html"
     }
   ]
+
+"share_target": {
+  "action": "./index.html",
+  "method": "GET",
+  "params": {
+    "text": "text"
+  }
+}
+  
 }
