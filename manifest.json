@@ -50,5 +50,11 @@
     "type": "image/png",
     "form_factor": "narrow"
   }
+    {
+  "src": "screenshot-wide.png",
+  "sizes": "2772x1240",
+  "type": "image/png",
+  "form_factor": "wide"
+    }
   ]
 }
