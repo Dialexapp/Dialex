@@ -12,14 +12,18 @@
 
   "orientation": "portrait-primary",
 
-  "categories": [
-    "utilities",
-    "productivity",
-    "education"
-  ],
+  "lang": "it",
+  "dir": "ltr",
+
+  "categories": ["utilities", "productivity"],
 
   "prefer_related_applications": false,
   "related_applications": [],
+
+  "display_override": [
+    "window-controls-overlay",
+    "standalone"
+  ],
 
   "icons": [
     {
@@ -48,21 +52,7 @@
       "sizes": "1240x2772",
       "type": "image/png",
       "form_factor": "narrow"
-    },
-    {
-      "src": "screenshot-wide.png",
-      "sizes": "2772x1240",
-      "type": "image/png",
-      "form_factor": "wide"
     }
-  ],
-
-  "lang": "it",
-  "dir": "ltr",
-
-  "display_override": [
-    "window-controls-overlay",
-    "standalone"
   ],
 
   "shortcuts": [
