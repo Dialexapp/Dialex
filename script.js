@@ -1,125 +1,115 @@
 let deferredPrompt;
-
-// ==========================
-// INSTALL POPUP
-// ==========================
-
-const popup = document.getElementById("installPopup");
-const installBtn = document.getElementById("installBtnPopup");
-const closeBtn = document.getElementById("closePopup");
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-
-  popup.classList.remove("hidden");
-});
-
-installBtn.addEventListener("click", async () => {
-  popup.classList.add("hidden");
-
-  if (!deferredPrompt) return;
-
-  deferredPrompt.prompt();
-
-  await deferredPrompt.userChoice;
-
-  deferredPrompt = null;
-});
-
-closeBtn.addEventListener("click", () => {
-  popup.classList.add("hidden");
-});
-
-
-// ==========================
-// DIALEX LOGIC
-// ==========================
-
 let italianoToNapoletano = true;
 
-const dizionarioInverso = {};
+// ==========================
+// INSTALL POPUP SAFE INIT
+// ==========================
 
-for (const chiave in dizionario) {
-  dizionarioInverso[dizionario[chiave]] = chiave;
+window.addEventListener("load", () => {
+
+  const popup = document.getElementById("installPopup");
+  const installBtn = document.getElementById("installBtnPopup");
+  const closeBtn = document.getElementById("closePopup");
+
+  if (!popup || !installBtn || !closeBtn) return;
+
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    popup.classList.remove("hidden");
+  });
+
+  installBtn.addEventListener("click", async () => {
+    popup.classList.add("hidden");
+
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+  });
+
+  closeBtn.addEventListener("click", () => {
+    popup.classList.add("hidden");
+  });
+
+});
+
+
+// ==========================
+// SAFE DIZIONARIO CHECK
+// ==========================
+
+function getDizionario() {
+  if (typeof dizionario === "undefined") {
+    console.error("❌ dizionario.js non caricato");
+    return null;
+  }
+  return dizionario;
 }
 
 function normalizzaTesto(testo) {
-  return testo
-    .toLowerCase()
-    .trim()
-    .replace(/[.,!?;:()"']/g, "")
-    .replace(/\s+/g, " ");
+  return testo.toLowerCase().trim();
 }
 
-function similarita(a, b) {
-  let uguali = 0;
 
-  for (let i = 0; i < Math.min(a.length, b.length); i++) {
-    if (a[i] === b[i]) uguali++;
-  }
-
-  return uguali / Math.max(a.length, b.length);
-}
-
-function trovaSimile(parola, diz) {
-  let migliore = null;
-  let punteggio = 0;
-
-  for (const chiave in diz) {
-    const s = similarita(parola, chiave);
-
-    if (s > punteggio) {
-      punteggio = s;
-      migliore = chiave;
-    }
-  }
-
-  if (punteggio >= 0.70) return diz[migliore];
-  return null;
-}
+// ==========================
+// TRADUZIONE SICURA
+// ==========================
 
 function traduci() {
 
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
-  let testo = normalizzaTesto(input.value);
-
-  const diz = italianoToNapoletano
-    ? dizionario
-    : dizionarioInverso;
-
-  if (diz[testo]) {
-    output.innerText = diz[testo];
+  const diz = getDizionario();
+  if (!diz) {
+    output.innerText = "Errore: dizionario non caricato";
     return;
   }
+
+  let testo = normalizzaTesto(input.value);
+
+  const dizAttivo = italianoToNapoletano ? diz : invertiDizionario(diz);
 
   const parole = testo.split(" ");
   const risultato = [];
 
   for (const parola of parole) {
-
-    if (diz[parola]) {
-      risultato.push(diz[parola]);
-    } else {
-      const simile = trovaSimile(parola, diz);
-      if (simile) {
-        risultato.push(simile);
-      } else {
-        risultato.push(parola);
-      }
-    }
-
+    risultato.push(dizAttivo[parola] || parola);
   }
 
   output.innerText = risultato.join(" ");
 }
 
+
+// ==========================
+// INVERSIONE SICURA
+// ==========================
+
+function invertiDizionario(diz) {
+  const inv = {};
+  for (const k in diz) {
+    inv[diz[k]] = k;
+  }
+  return inv;
+}
+
+
+// ==========================
+// RESET
+// ==========================
+
 function reset() {
   document.getElementById("input").value = "";
   document.getElementById("output").innerText = "";
 }
+
+
+// ==========================
+// SCAMBIO LINGUE
+// ==========================
 
 function scambiaLingue() {
 
@@ -131,9 +121,7 @@ function scambiaLingue() {
   input.value = output.innerText;
   output.innerText = "";
 
-  if (italianoToNapoletano) {
-    input.placeholder = "Scrivi in italiano...";
-  } else {
-    input.placeholder = "Scrivi in napoletano...";
-  }
+  input.placeholder = italianoToNapoletano
+    ? "Scrivi in italiano..."
+    : "Scrivi in napoletano...";
 }
