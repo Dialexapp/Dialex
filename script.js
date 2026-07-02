@@ -1,11 +1,13 @@
 let deferredPrompt;
 
+// ==========================
 // INSTALL POPUP
+// ==========================
+
 const popup = document.getElementById("installPopup");
 const installBtn = document.getElementById("installBtnPopup");
 const closeBtn = document.getElementById("closePopup");
 
-// DETECT INSTALL
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
@@ -13,7 +15,6 @@ window.addEventListener("beforeinstallprompt", (e) => {
   popup.classList.remove("hidden");
 });
 
-// CLICK INSTALL
 installBtn.addEventListener("click", async () => {
   popup.classList.add("hidden");
 
@@ -26,21 +27,17 @@ installBtn.addEventListener("click", async () => {
   deferredPrompt = null;
 });
 
-// CLOSE POPUP
 closeBtn.addEventListener("click", () => {
   popup.classList.add("hidden");
 });
 
 
 // ==========================
-// DIALER LOGIC
+// DIALEX LOGIC
 // ==========================
 
-// true = Italiano → Napoletano
-// false = Napoletano → Italiano
 let italianoToNapoletano = true;
 
-// Crea automaticamente il dizionario inverso
 const dizionarioInverso = {};
 
 for (const chiave in dizionario) {
@@ -56,7 +53,6 @@ function normalizzaTesto(testo) {
 }
 
 function similarita(a, b) {
-
   let uguali = 0;
 
   for (let i = 0; i < Math.min(a.length, b.length); i++) {
@@ -64,30 +60,23 @@ function similarita(a, b) {
   }
 
   return uguali / Math.max(a.length, b.length);
-
 }
 
 function trovaSimile(parola, diz) {
-
   let migliore = null;
   let punteggio = 0;
 
   for (const chiave in diz) {
-
     const s = similarita(parola, chiave);
 
     if (s > punteggio) {
       punteggio = s;
       migliore = chiave;
     }
-
   }
 
-  if (punteggio >= 0.70)
-    return diz[migliore];
-
+  if (punteggio >= 0.70) return diz[migliore];
   return null;
-
 }
 
 function traduci() {
@@ -101,38 +90,30 @@ function traduci() {
     ? dizionario
     : dizionarioInverso;
 
-  // Controlla prima se esiste tutta la frase
   if (diz[testo]) {
     output.innerText = diz[testo];
     return;
   }
 
-  // Altrimenti traduce parola per parola
   const parole = testo.split(" ");
   const risultato = [];
 
   for (const parola of parole) {
 
     if (diz[parola]) {
-
-    risultato.push(diz[parola]);
-
-} else {
-
-    const simile = trovaSimile(parola, diz);
-
-    if (simile) {
-        risultato.push(simile);
+      risultato.push(diz[parola]);
     } else {
+      const simile = trovaSimile(parola, diz);
+      if (simile) {
+        risultato.push(simile);
+      } else {
         risultato.push(parola);
-    }
-
+      }
     }
 
   }
 
   output.innerText = risultato.join(" ");
-
 }
 
 function reset() {
@@ -147,9 +128,12 @@ function scambiaLingue() {
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
-  const temp = input.value;
   input.value = output.innerText;
   output.innerText = "";
 
   if (italianoToNapoletano) {
-    input.placeholder = "Scrivi in
+    input.placeholder = "Scrivi in italiano...";
+  } else {
+    input.placeholder = "Scrivi in napoletano...";
+  }
+}
