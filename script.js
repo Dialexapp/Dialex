@@ -62,11 +62,27 @@ function traduci() {
     ? dizionario
     : dizionarioInverso;
 
+  // Controlla prima se esiste tutta la frase
   if (diz[testo]) {
     output.innerText = diz[testo];
-  } else {
-    output.innerText = "Traduzione non trovata";
+    return;
   }
+
+  // Altrimenti traduce parola per parola
+  const parole = testo.split(" ");
+  const risultato = [];
+
+  for (const parola of parole) {
+
+    if (diz[parola]) {
+      risultato.push(diz[parola]);
+    } else {
+      risultato.push(parola);
+    }
+
+  }
+
+  output.innerText = risultato.join(" ");
 
 }
 
