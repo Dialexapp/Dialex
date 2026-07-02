@@ -114,9 +114,19 @@ function traduci() {
   for (const parola of parole) {
 
     if (diz[parola]) {
-      risultato.push(diz[parola]);
+
+    risultato.push(diz[parola]);
+
+} else {
+
+    const simile = trovaSimile(parola, diz);
+
+    if (simile) {
+        risultato.push(simile);
     } else {
-      risultato.push(parola);
+        risultato.push(parola);
+    }
+
     }
 
   }
