@@ -1,66 +1,76 @@
-
 let italianoToNapoletano = true;
+
+let deferredPrompt;
+
+// ======================
+// INSTALL POPUP
+// ======================
+
+const popup = document.getElementById("installPopup");
+const installBtn = document.getElementById("installBtnPopup");
+const closeBtn = document.getElementById("closePopup");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  if (popup) popup.classList.remove("hidden");
+});
+
+installBtn?.addEventListener("click", async () => {
+  if (!deferredPrompt) return;
+
+  popup.classList.add("hidden");
+
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+
+  deferredPrompt = null;
+});
+
+closeBtn?.addEventListener("click", () => {
+  popup.classList.add("hidden");
+});
 
 // ======================
 // CHECK BASE
 // ======================
 
 window.addEventListener("load", () => {
-
-  console.log("Dialex JS avviato 😎");
+  console.log("Dialex avviato 😎");
 
   if (typeof dizionario === "undefined") {
-    alert("ERRORE: dizionario.js non caricato");
+    alert("Dizionario non caricato!");
   }
-
 });
-
 
 // ======================
 // NORMALIZZA
 // ======================
 
 function normalizzaTesto(testo) {
-  return testo
-    .toLowerCase()
-    .trim();
+  return testo.toLowerCase().trim();
 }
 
-
 // ======================
-// TRADUCI (SAFE)
+// TRADUCI
 // ======================
 
 function traduci() {
-
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
-  if (!input || !output) return;
-
-  if (typeof dizionario === "undefined") {
-    output.innerText = "Errore: dizionario non caricato";
-    return;
-  }
-
-  const dizInverso = inverti(dizionario);
-
   const diz = italianoToNapoletano
     ? dizionario
-    : dizInverso;
+    : inverti(dizionario);
 
   const testo = normalizzaTesto(input.value);
-
   const parole = testo.split(" ");
-  const risultato = [];
 
-  for (const p of parole) {
-    risultato.push(diz[p] || p);
-  }
+  const risultato = parole.map(p => diz[p] || p);
 
   output.innerText = risultato.join(" ");
 }
-
 
 // ======================
 // RESET
@@ -71,18 +81,17 @@ function reset() {
   document.getElementById("output").innerText = "";
 }
 
-
 // ======================
 // SCAMBIA
 // ======================
 
 function scambiaLingue() {
-
   italianoToNapoletano = !italianoToNapoletano;
 
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
+  const temp = input.value;
   input.value = output.innerText;
   output.innerText = "";
 
@@ -91,13 +100,11 @@ function scambiaLingue() {
     : "Scrivi in napoletano...";
 }
 
-
 // ======================
-// INVERTE DIZIONARIO
+// INVERTI DIZIONARIO
 // ======================
 
 function inverti(diz) {
-
   const inv = {};
 
   for (const k in diz) {
@@ -105,44 +112,4 @@ function inverti(diz) {
   }
 
   return inv;
-
-let deferredPrompt;
-
-const popup = document.getElementById("installPopup");
-const installBtn = document.getElementById("installBtnPopup");
-const closeBtn = document.getElementById("closePopup");
-
-// MOSTRA INSTALL PROMPT
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-
-  if (popup) {
-    popup.classList.remove("hidden");
-  }
-});
-
-// CLICK INSTALL
-if (installBtn) {
-  installBtn.addEventListener("click", async () => {
-
-    if (popup) popup.classList.add("hidden");
-
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-
-    await deferredPrompt.userChoice;
-
-    deferredPrompt = null;
-  });
-}
-
-// CLOSE POPUP
-if (closeBtn) {
-  closeBtn.addEventListener("click", () => {
-    if (popup) popup.classList.add("hidden");
-  });
-}
-  
-}
+    }
