@@ -105,4 +105,44 @@ function inverti(diz) {
   }
 
   return inv;
+
+let deferredPrompt;
+
+const popup = document.getElementById("installPopup");
+const installBtn = document.getElementById("installBtnPopup");
+const closeBtn = document.getElementById("closePopup");
+
+// MOSTRA INSTALL PROMPT
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+
+  if (popup) {
+    popup.classList.remove("hidden");
+  }
+});
+
+// CLICK INSTALL
+if (installBtn) {
+  installBtn.addEventListener("click", async () => {
+
+    if (popup) popup.classList.add("hidden");
+
+    if (!deferredPrompt) return;
+
+    deferredPrompt.prompt();
+
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+  });
+}
+
+// CLOSE POPUP
+if (closeBtn) {
+  closeBtn.addEventListener("click", () => {
+    if (popup) popup.classList.add("hidden");
+  });
+}
+  
 }
