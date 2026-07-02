@@ -32,23 +32,42 @@ closeBtn.addEventListener("click", () => {
 });
 
 
-// ===== DIALER LOGIC =====
+// ==========================
+// DIALER LOGIC
+// ==========================
+
+// true = Italiano → Napoletano
+// false = Napoletano → Italiano
+let italianoToNapoletano = true;
+
+// Crea automaticamente il dizionario inverso
+const dizionarioInverso = {};
+
+for (const chiave in dizionario) {
+  dizionarioInverso[dizionario[chiave]] = chiave;
+}
 
 function normalizzaTesto(testo) {
   return testo.toLowerCase().trim();
 }
 
 function traduci() {
+
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
   let testo = normalizzaTesto(input.value);
 
-  if (dizionario[testo]) {
-    output.innerText = dizionario[testo];
+  const diz = italianoToNapoletano
+    ? dizionario
+    : dizionarioInverso;
+
+  if (diz[testo]) {
+    output.innerText = diz[testo];
   } else {
-    output.innerText = testo;
+    output.innerText = "Traduzione non trovata";
   }
+
 }
 
 function reset() {
@@ -57,10 +76,15 @@ function reset() {
 }
 
 function scambiaLingue() {
+
+  italianoToNapoletano = !italianoToNapoletano;
+
   const input = document.getElementById("input");
   const output = document.getElementById("output");
 
-  let temp = input.value;
+  const temp = input.value;
   input.value = output.innerText;
-  output.innerText = temp;
-}
+  output.innerText = "";
+
+  if (italianoToNapoletano) {
+    input.placeholder = "Scrivi in
