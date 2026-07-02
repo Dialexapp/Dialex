@@ -1,16 +1,12 @@
 {
   "name": "Dialex",
   "short_name": "Dialex",
-  "description": "Traduttore italiano - napoletano veloce e offline",
+  "description": "Traduttore italiano-napoletano offline",
 
   "start_url": "./index.html",
   "scope": "./",
-  "display": "standalone",
-  "display_override": [
-    "window-controls-overlay",
-    "standalone"
-  ],
 
+  "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#0f172a",
 
@@ -20,59 +16,16 @@
   "dir": "ltr",
   "orientation": "portrait-primary",
 
-  "categories": [
-    "utilities",
-    "productivity",
-    "education"
-  ],
-
-  "prefer_related_applications": false,
-  "related_applications": [],
-
   "icons": [
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
-  ],
-
-  "screenshots": [
-    {
-      "src": "screenshot1.png",
-      "sizes": "1240x2772",
-      "type": "image/png",
-      "form_factor": "narrow"
-    },
-    {
-      "src": "screenshot2.png",
-      "sizes": "1240x2772",
-      "type": "image/png",
-      "form_factor": "narrow"
-    }
-  ],
-
-  "shortcuts": [
-    {
-      "name": "Traduci",
-      "short_name": "Traduci",
-      "description": "Apri traduttore",
-      "url": "./index.html"
-    }
-  ],
-
-  "share_target": {
-    "action": "./index.html",
-    "method": "GET",
-    "params": {
-      "text": "text"
-    }
-  }
+  ]
 }
