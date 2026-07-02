@@ -75,6 +75,21 @@ margin:5px;
 
 <script src="dizionario.js"></script>
 <script src="script.js"></script>
+  
+ function enter(){
+document.getElementById("entry").style.display="none";
+}
 
+let deferredPrompt;
+
+window.addEventListener("beforeinstallprompt",(e)=>{
+e.preventDefault();
+deferredPrompt=e;
+});
+
+function install(){
+if(!deferredPrompt) return;
+deferredPrompt.prompt();
+}
 </body>
 </html>
