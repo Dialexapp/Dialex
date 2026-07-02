@@ -48,7 +48,11 @@ for (const chiave in dizionario) {
 }
 
 function normalizzaTesto(testo) {
-  return testo.toLowerCase().trim();
+  return testo
+    .toLowerCase()
+    .trim()
+    .replace(/[.,!?;:()"']/g, "")
+    .replace(/\s+/g, " ");
 }
 
 function traduci() {
