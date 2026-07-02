@@ -55,6 +55,41 @@ function normalizzaTesto(testo) {
     .replace(/\s+/g, " ");
 }
 
+function similarita(a, b) {
+
+  let uguali = 0;
+
+  for (let i = 0; i < Math.min(a.length, b.length); i++) {
+    if (a[i] === b[i]) uguali++;
+  }
+
+  return uguali / Math.max(a.length, b.length);
+
+}
+
+function trovaSimile(parola, diz) {
+
+  let migliore = null;
+  let punteggio = 0;
+
+  for (const chiave in diz) {
+
+    const s = similarita(parola, chiave);
+
+    if (s > punteggio) {
+      punteggio = s;
+      migliore = chiave;
+    }
+
+  }
+
+  if (punteggio >= 0.70)
+    return diz[migliore];
+
+  return null;
+
+}
+
 function traduci() {
 
   const input = document.getElementById("input");
